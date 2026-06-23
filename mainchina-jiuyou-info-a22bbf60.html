@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.2, user-scalable=yes">
+  <title>九游娱乐 · 简明指南与访问提醒</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f1f7fc;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      color: #1f2e3f;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1.2rem 1rem 2.5rem;
+    }
+
+    .wrapper {
+      max-width: 880px;
+      width: 100%;
+    }
+
+    /* 卡片容器 / 网格系统 */
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.2rem;
+      margin: 2rem 0 1.8rem;
+    }
+
+    @media (min-width: 540px) {
+      .card-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .card-grid .full-span {
+        grid-column: 1 / -1;
+      }
+    }
+
+    .card {
+      background: #ffffffdd;
+      backdrop-filter: blur(2px);
+      background: #ffffff;
+      border-radius: 22px;
+      padding: 1.6rem 1.4rem;
+      box-shadow: 0 6px 14px rgba(25, 80, 90, 0.06), 0 2px 6px rgba(0, 30, 40, 0.03);
+      transition: all 0.15s ease;
+      border: 1px solid rgba(80, 170, 180, 0.12);
+    }
+
+    .card:hover {
+      box-shadow: 0 12px 28px rgba(18, 110, 120, 0.08), 0 3px 10px rgba(0, 55, 65, 0.04);
+      border-color: rgba(38, 166, 180, 0.25);
+    }
+
+    /* 蓝绿色点缀 */
+    .accent-border {
+      border-left: 6px solid #2ab3be;
+      padding-left: 1rem;
+    }
+
+    .accent-dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background: #2bb3bf;
+      border-radius: 20px;
+      margin-right: 0.5rem;
+    }
+
+    .badge-soft {
+      background: #d7f0f3;
+      color: #14666e;
+      font-size: 0.8rem;
+      padding: 0.3rem 1rem;
+      border-radius: 40px;
+      display: inline-block;
+      letter-spacing: 0.3px;
+    }
+
+    /* hero 区 */
+    .hero {
+      margin-top: 0.6rem;
+      margin-bottom: 0.1rem;
+    }
+
+    .hero .greeting {
+      font-size: 2.2rem;
+      font-weight: 400;
+      letter-spacing: -0.3px;
+      line-height: 1.2;
+      color: #16323b;
+    }
+
+    .hero .greeting strong {
+      font-weight: 600;
+      color: #065f6b;
+    }
+
+    .hero .opening-line {
+      font-size: 1.3rem;
+      font-weight: 320;
+      color: #2a5a63;
+      margin-top: 0.4rem;
+      border-left: 4px solid #3dc0cc;
+      padding-left: 1.2rem;
+    }
+
+    .subtle-meta {
+      color: #55717a;
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem 1.4rem;
+    }
+
+    .link-embed {
+      color: #0b7a88;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.1s;
+      border-bottom: 1px solid transparent;
+    }
+
+    .link-embed:hover {
+      border-bottom: 1px solid #2ba5b0;
+      color: #085f6a;
+    }
+
+    .feature-list {
+      list-style: none;
+      margin-top: 0.3rem;
+    }
+
+    .feature-list li {
+      margin-bottom: 0.7rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+
+    .feature-list li::before {
+      content: "▹";
+      color: #229ca8;
+      font-size: 1.2rem;
+      line-height: 1.3;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid #e0eef0;
+      padding: 1rem 0 0.8rem;
+    }
+
+    .faq-item:last-of-type {
+      border-bottom: none;
+    }
+
+    .faq-q {
+      font-weight: 520;
+      color: #10434d;
+      display: flex;
+      align-items: baseline;
+      gap: 0.4rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .faq-q .accent-dot {
+      flex-shrink: 0;
+      margin-top: 0.4rem;
+    }
+
+    .faq-a {
+      color: #2a4954;
+      font-size: 0.95rem;
+      margin-left: 1.4rem;
+    }
+
+    .gentle-footer {
+      margin-top: 2.4rem;
+      font-size: 0.95rem;
+      border-top: 1px solid #cbe2e6;
+      padding-top: 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: baseline;
+      color: #3e626b;
+    }
+
+    .gentle-footer small {
+      opacity: 0.75;
+    }
+
+    /* 响应式调整 */
+    @media (max-width: 480px) {
+      .hero .greeting {
+        font-size: 1.9rem;
+      }
+      .hero .opening-line {
+        font-size: 1.1rem;
+        padding-left: 0.9rem;
+      }
+      .card {
+        padding: 1.2rem 1.1rem;
+      }
+      .gentle-footer {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+    }
+
+    .mt-1 { margin-top: 0.8rem; }
+    .mb-0 { margin-bottom: 0.2rem; }
+    .text-balance { text-wrap: balance; }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- 故事叙述式开场：短句，温和启程 -->
+  <div class="hero">
+    <div class="greeting">
+      慢慢来。<br>
+      一个<strong>更清晰</strong>的开始。
+    </div>
+    <div class="opening-line">
+      你需要的不是复杂入口，而是一份简明指南。
+    </div>
+    <div class="subtle-meta">
+      <span class="badge-soft">📘 访问提醒</span>
+      <span>· 故事叙述式 · 新手向</span>
+    </div>
+  </div>
+
+  <!-- 承接段落：从指南与提醒的角度展开 -->
+  <div class="card-grid">
+    <div class="card full-span">
+      <p style="font-size: 1.05rem; font-weight: 380;">
+        在接触任何线上休闲平台之前，我们建议先花两分钟了解基本脉络。  
+        <span style="background: linear-gradient(135deg, #d1f0f4 0%, #c2e9ef 80%); padding: 0 6px 0 4px; border-radius: 4px;">九游娱乐</span> 是一个综合性线上互动社区，围绕棋牌、竞技、趣味游戏和社交场景展开。它的设计偏向轻量、即时，适合碎片时间使用。  
+        以下内容以故事叙述的方式，帮你快速熟悉页面结构、功能特点以及访问时的注意事项。
+      </p>
+    </div>
+
+    <!-- 特点列表：网格卡片 + 蓝绿点缀 -->
+    <div class="card accent-border">
+      <h3 style="font-weight: 480; font-size: 1.15rem; margin-bottom: 0.5rem; color: #135c66;">
+        <span class="accent-dot"></span> 特点一览
+      </h3>
+      <ul class="feature-list">
+        <li>轻量客户端，无需复杂注册，快速进入对局</li>
+        <li>融合经典棋牌与创新休闲玩法，节奏自控</li>
+        <li>实时排行榜与好友系统，氛围轻松</li>
+        <li>定期更新主题赛事，奖励偏向趣味性</li>
+      </ul>
+    </div>
+
+    <div class="card accent-border">
+      <h3 style="font-weight: 480; font-size: 1.15rem; margin-bottom: 0.5rem; color: #135c66;">
+        <span class="accent-dot"></span> 场景碎片
+      </h3>
+      <ul class="feature-list" style="list-style: none; padding-left: 0;">
+        <li>🌿 午休间隙，一局斗地主或麻将</li>
+        <li>🎲 和朋友边聊边玩骰子类小游戏</li>
+        <li>🏆 周末锦标赛，轻松切磋</li>
+        <li>🎧 观察高手牌局，边学边玩</li>
+      </ul>
+    </div>
+
+    <!-- 提示 / 提醒卡片（访问提醒） -->
+    <div class="card" style="background: #f5fbfd;">
+      <h3 style="font-weight: 480; font-size: 1.15rem; margin-bottom: 0.2rem; color: #1f6e79;">
+        ⚐ 访问提醒
+      </h3>
+      <p style="margin: 0.3rem 0 0.6rem;">
+        使用 <a href="https://mainchina-jiuyou.com" class="link-embed">九游娱乐</a> 时，建议保持网络通畅，并留意浏览器安全提示。  
+        平台<strong>不要求</strong>提供敏感个人信息，任何索要密码或验证码的第三方链接都应警惕。  
+        另外，建议初次访问时先浏览“帮助”或“规则”板块，了解计分与退出的基本逻辑。
+      </p>
+      <div style="font-size: 0.9rem; border-left: 3px solid #3db9c4; background: #e7f4f6; padding: 0.6rem 1rem; border-radius: 0 18px 18px 0; margin-top: 0.6rem;">
+        💡 小贴士：收藏 <a href="https://mainchina-jiuyou.com" class="link-embed">九游娱乐</a> 页面，下次直接从收藏夹进入即可，无需记忆网址。
+      </div>
+    </div>
+
+    <!-- FAQ 摘要（温和结尾前） -->
+    <div class="card full-span" style="padding-bottom: 0.8rem;">
+      <h3 style="font-weight: 480; font-size: 1.15rem; margin-bottom: 0.3rem; color: #1b6a75;">
+        <span class="accent-dot"></span> 常见疑问 · 摘要
+      </h3>
+      <div class="faq-item">
+        <div class="faq-q"><span class="accent-dot"></span> 需要下载额外软件吗？</div>
+        <div class="faq-a">不需要。基于浏览器即可运行，部分功能会建议安装轻量插件，但完全可选。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span class="accent-dot"></span> 是否支持手机？</div>
+        <div class="faq-a">页面针对移动端做了适配，竖屏横屏都可以操作，推荐使用最新版浏览器。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span class="accent-dot"></span> 怎样确保账户安全？</div>
+        <div class="faq-a">不共享密码，不使用公共电脑保存登录状态，并定期清除缓存。<br>官方客服不会主动私信索要任何信息。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 温和结尾：无压迫感，自然收束 -->
+  <div style="margin: 1.2rem 0 0.2rem; padding: 0.6rem 0.2rem; text-align: left;">
+    <p style="font-size: 1rem; max-width: 700px; color: #1e4a55;">
+      希望这份简短的指引能帮你更从容地使用 <a href="https://mainchina-jiuyou.com" class="link-embed">九游娱乐</a>。  
+      线上空间千千万，保留自己的节奏最重要。记得适度休息，把游戏当作生活里的一片绿叶。
+    </p>
+  </div>
+
+  <!-- 页脚 -->
+  <div class="gentle-footer">
+    <span>九游娱乐 · 简明指南</span>
+    <small>故事叙述式介绍 · 仅供参考</small>
+  </div>
+
+</div>
+</body>
+</html>
